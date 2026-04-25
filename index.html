@@ -1,196 +1,363 @@
-import React from 'react';
-
-const Brochure = () => {
-  const primaryColor = "#0056b3"; // 深科技藍
-  const accentColor = "#ff6b6b";  // 珊瑚紅標記
-  const bgColor = "#f8fafc";      // 極淺灰底
-
-  // 模擬照片佔位符
-  const PhotoPlaceholder = ({ text, className = "" }) => (
-    <div className={`w-full bg-gray-200 border-2 border-dashed border-gray-400 rounded-lg flex items-center justify-center text-gray-500 text-xs p-4 text-center ${className}`}>
-      <div className="flex flex-col items-center">
-        <i className="fa-solid fa-image mb-2 text-xl"></i>
-        <span>{text}</span>
-      </div>
-    </div>
-  );
-
-  return (
-    <div className="bg-gray-100 min-h-screen p-0 md:p-8 flex flex-col items-center gap-8 font-sans">
-      {/* 提示語（列印時會自動隱藏） */}
-      <div className="print:hidden bg-blue-600 text-white p-4 rounded-lg shadow-lg max-w-4xl w-full text-center mb-4">
-        <h3 className="font-bold text-lg">💡 如何獲取成品檔案？</h3>
-        <p className="text-sm opacity-90">點擊右側預覽視窗，按鍵盤 <b>Ctrl + P</b> (或右鍵列印)，並將「目標」選為「<b>另存為 PDF</b>」，版面設為「<b>橫向</b>」。</p>
-      </div>
-
-      {/* 第一面：外頁 (內摺頁、封底、封面) */}
-      <div className="bg-white shadow-2xl overflow-hidden print:shadow-none print:m-0" style={{ width: '297mm', height: '210mm', minWidth: '297mm', minHeight: '210mm', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>淡江大學 人工智慧學系 | 王奕昀 備審三折頁</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
         
-        {/* 左欄：內摺頁 (就讀動機) */}
-        <div className="p-8 border-r flex flex-col justify-between" style={{ backgroundColor: bgColor }}>
-          <div>
-            <h2 className="text-xl font-bold mb-4 flex items-center" style={{ color: primaryColor }}>
-              <span className="w-1.5 h-6 bg-red-400 mr-2 rounded-full"></span>
-              為何選擇淡江 AI 系？
-            </h2>
-            <div className="text-sm leading-relaxed text-gray-700 space-y-4">
-              <p className="font-bold text-blue-800">「AI 不只是軟體，更需硬體支撐。」</p>
-              <p>高中三年的摸索讓我明白，演算法寫得再好，若不懂底層硬體限制，程式就無法高效運行。</p>
-              <p>我極度認同貴系「學中做、做中學」理念，前三年連續的實務專題課程，正是我渴望的舞台。</p>
-            </div>
-          </div>
-          <div className="mt-6">
-            <h3 className="text-sm font-bold text-gray-800 mb-3 border-b pb-1">學習歷程里程碑</h3>
-            <div className="space-y-3 text-xs">
-              <div className="flex gap-2">
-                <span className="text-red-500 font-bold">高一</span>
-                <span>資訊小老師、心輔股長</span>
-              </div>
-              <div className="flex gap-2">
-                <span className="text-red-500 font-bold">高二</span>
-                <span>足球社幹部 (邏輯預判練習)</span>
-              </div>
-              <div className="flex gap-2">
-                <span className="text-red-500 font-bold">高三</span>
-                <span>台積電營隊第一名、半導體實測</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 中欄：封底 (未來規劃) */}
-        <div className="p-8 border-r flex flex-col" style={{ backgroundColor: 'white' }}>
-          <h2 className="text-xl font-bold mb-6 text-center" style={{ color: primaryColor }}>未來藍圖</h2>
-          <div className="space-y-6 flex-grow">
-            <div className="relative pl-4 border-l-2 border-blue-100">
-              <h4 className="text-sm font-bold text-blue-900">大一～大二：紮根</h4>
-              <p className="text-xs text-gray-600 mt-1">強化微積分與數學工具，延續 Micro:bit 除錯經驗，鍛鍊感測控制能力。</p>
-            </div>
-            <div className="relative pl-4 border-l-2 border-blue-100">
-              <h4 className="text-sm font-bold text-blue-900">大二下～大三：專題</h4>
-              <p className="text-xs text-gray-600 mt-1">鎖定智慧製造領域，利用 EDA 平台研究軟硬體最佳配比。</p>
-            </div>
-            <div className="relative pl-4 border-l-2 border-blue-100">
-              <h4 className="text-sm font-bold text-blue-900">大四～未來：接軌</h4>
-              <p className="text-xs text-gray-600 mt-1">爭取專業實習，申請預研生計畫，成為軟硬體整合專才。</p>
-            </div>
-          </div>
-          <div className="mt-auto text-center py-4 border-t border-gray-100">
-            <p className="text-[10px] text-gray-400">永年高中 王奕昀 製作</p>
-          </div>
-        </div>
-
-        {/* 右欄：封面 */}
-        <div className="p-0 flex flex-col text-white" style={{ background: `linear-gradient(135deg, ${primaryColor} 0%, #003366 100%)` }}>
-          <div className="p-8 pt-12 flex-grow">
-            <h1 className="text-3xl font-black leading-tight tracking-wider mb-2">從底層硬體到<br/>團隊協作</h1>
-            <p className="text-lg font-light opacity-80 mb-8 italic">做一個務實的 AI 實踐者</p>
-            
-            <PhotoPlaceholder text="[此處請放置你穿著制服或在實驗室的個人照片]" className="h-48 mb-8 bg-white/10 border-white/20 text-white" />
-            
-            <div className="space-y-1">
-              <p className="text-xs font-bold text-blue-300">申請校系</p>
-              <p className="text-xl font-bold">淡江大學 人工智慧學系</p>
-            </div>
-          </div>
-          <div className="p-8 bg-[#ffd166] text-blue-900 flex justify-between items-center">
-            <div>
-              <p className="text-[10px] uppercase font-bold opacity-70">申請人</p>
-              <p className="text-lg font-bold">王奕昀</p>
-            </div>
-            <div className="text-right">
-              <p className="text-[10px] font-bold">永年高中</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      {/* 第二面：內頁 (左、中、右) */}
-      <div className="bg-white shadow-2xl overflow-hidden print:shadow-none print:m-0" style={{ width: '297mm', height: '210mm', minWidth: '297mm', minHeight: '210mm', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
-        
-        {/* 內左：科技硬實力 */}
-        <div className="p-8 border-r flex flex-col gap-4">
-          <h2 className="text-xl font-bold flex items-center" style={{ color: primaryColor }}>
-            <i className="fa-solid fa-microchip mr-2 text-red-400"></i>直面硬體與誤差
-          </h2>
-          <div className="text-xs text-gray-700 leading-relaxed space-y-3">
-            <p className="font-bold text-gray-900">🔧 程式與硬體的對話</p>
-            <p>製作「精靈逃亡」與四足機器人時，我學會了在程式出錯時逐行 Debug 的耐心，體會到硬體環境受光影干擾的真實限制。</p>
-            <p className="font-bold text-gray-900">📊 用數據說話的物理實測</p>
-            <p>實測紅光二極體波長 660 奈米，換算出 1.878 電子伏特，並對照文獻推導出材料為磷化銦鎵。</p>
-          </div>
-          <PhotoPlaceholder text="[此處放 660nm 光譜與能隙推導曲線圖]" className="h-40 mt-auto" />
-          <p className="text-[10px] text-center text-gray-400 italic">圖說：實測二極體波長，對照曲線推導材料</p>
-        </div>
-
-        {/* 內中：科技思辨力 */}
-        <div className="p-8 border-r flex flex-col gap-4 bg-gray-50">
-          <h2 className="text-xl font-bold flex items-center" style={{ color: primaryColor }}>
-            <i className="fa-solid fa-brain mr-2 text-red-400"></i>不盲從工具
-          </h2>
-          <div className="space-y-4">
-            <div className="bg-white p-3 rounded shadow-sm border-l-4 border-red-400">
-              <h4 className="text-xs font-bold text-gray-900">發現 AI 工具極限</h4>
-              <p className="text-[11px] text-gray-600 mt-1">嘗試用 AI 繪製電路圖卻發現細節錯誤，我果斷改用正確圖片排版。學會：評估工具極限，務實解決問題。</p>
-            </div>
-            <div className="bg-white p-3 rounded shadow-sm border-l-4 border-blue-400">
-              <h4 className="text-xs font-bold text-gray-900">台積電營隊體悟</h4>
-              <p className="text-[11px] text-gray-600 mt-1">了解晶片「算力」是 AI 核心。憑藉平常累積的半導體知識在競賽快速反應，幫小組奪得第一名。</p>
-            </div>
-          </div>
-          <PhotoPlaceholder text="[此處放你在台積電營隊觀察精密設備的照片]" className="h-40 mt-auto" />
-          <p className="text-[10px] text-center text-gray-400 italic">圖說：觀察晶圓微結構，看見 AI 算力底層</p>
-        </div>
-
-        {/* 內右：團隊軟實力 */}
-        <div className="p-8 flex flex-col gap-4">
-          <h2 className="text-xl font-bold flex items-center" style={{ color: primaryColor }}>
-            <i className="fa-solid fa-users mr-2 text-red-400"></i>球場到教室的協作
-          </h2>
-          <div className="space-y-5">
-            <div className="flex gap-3">
-              <div className="bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center shrink-0"><i className="fa-solid fa-futbol text-xs"></i></div>
-              <div className="text-[11px]">
-                <p className="font-bold">足球場上的預判</p>
-                <p className="text-gray-500">在瞬息萬變的球場練習邏輯預判，明白 11 人需各司其職而非個人主義。</p>
-              </div>
-            </div>
-            <div className="flex gap-3">
-              <div className="bg-red-100 text-red-600 w-8 h-8 rounded-full flex items-center justify-center shrink-0"><i className="fa-solid fa-code text-xs"></i></div>
-              <div className="text-[11px]">
-                <p className="font-bold">小老師：化繁為簡</p>
-                <p className="text-gray-700">協助同學 C++ 除錯，學會將程式邏輯比喻成日常生活步驟。</p>
-              </div>
-            </div>
-            <div className="flex gap-3">
-              <div className="bg-green-100 text-green-600 w-8 h-8 rounded-full flex items-center justify-center shrink-0"><i className="fa-solid fa-heart text-xs"></i></div>
-              <div className="text-[11px]">
-                <p className="font-bold">心輔股長：細節守護</p>
-                <p className="text-gray-700">清點發票與捐款中磨練耐性，成為團隊中穩定且可靠的後盾。</p>
-              </div>
-            </div>
-          </div>
-          <PhotoPlaceholder text="[此處放擔任小老師或足球社練習照片]" className="h-32 mt-auto" />
-        </div>
-
-      </div>
-
-      {/* 底部說明 */}
-      <div className="print:hidden text-gray-400 text-sm mb-12">
-        <p>© 2024 淡江大學人工智慧學系入學備審資料 - 王奕昀 個人版權所有</p>
-      </div>
-
-      <style dangerouslySetInnerHTML={{ __html: `
-        @media print {
-          body { background: white; padding: 0; margin: 0; }
-          .print\\:hidden { display: none !important; }
-          @page { size: A4 landscape; margin: 0; }
-          div { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        /* 頁面基本設定 */
+        body {
+            background-color: #f1f5f9;
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            margin: 0;
+            padding: 20px;
         }
-      `}} />
-    </div>
-  );
-};
 
-export default Brochure;
+        /* A4 橫式三折頁容器 */
+        .brochure-page {
+            width: 297mm;
+            height: 210mm;
+            background: white;
+            margin: 0 auto 40px auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 圖表容器規範 */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            height: 220px;
+            max-height: 250px;
+        }
+
+        /* 內容區塊間距 */
+        .panel {
+            padding: 30px;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .panel:last-child {
+            border-right: none;
+        }
+
+        /* 列印模式優化 */
+        @media print {
+            body { background: none; padding: 0; }
+            .brochure-page { 
+                margin: 0; 
+                box-shadow: none; 
+                page-break-after: always;
+            }
+            .print-hide { display: none; }
+            @page { size: A4 landscape; margin: 0; }
+        }
+
+        /* 顏色主題 */
+        .bg-primary { background-color: #0056b3; }
+        .text-primary { color: #0056b3; }
+        .bg-accent { background-color: #ff6b6b; }
+        .text-accent { color: #ff6b6b; }
+        .bg-soft { background-color: #f8fafc; }
+
+        /* 裝飾元素 (非 SVG) */
+        .dot { height: 8px; width: 8px; border-radius: 50%; display: inline-block; margin-right: 8px; }
+    </style>
+</head>
+<body>
+
+    <!-- 列印提示列 -->
+    <div class="print-hide max-w-6xl mx-auto mb-6 bg-blue-600 text-white p-4 rounded-lg shadow-md flex justify-between items-center">
+        <div>
+            <h3 class="font-bold">✨ 這是一份可列印的備審成品</h3>
+            <p class="text-xs opacity-90">下方展示為 A4 橫式三折頁的兩面。請按 <b>Ctrl + P</b> 選擇「另存為 PDF」，並將佈局設為「橫向」。</p>
+        </div>
+        <button onclick="window.print()" class="bg-white text-blue-600 px-4 py-2 rounded font-bold hover:bg-blue-50 transition">
+            <i class="fa-solid fa-print mr-2"></i>立即列印成 PDF
+        </button>
+    </div>
+
+    <!-- 第一張紙：外頁 (內摺、封底、封面) -->
+    <div class="brochure-page">
+        <!-- 1-1 內摺頁：就讀動機 -->
+        <div class="panel bg-soft">
+            <div class="mb-6">
+                <h2 class="text-xl font-bold text-primary mb-2 border-b-2 border-primary pb-1">為什麼選擇淡江 AI？</h2>
+                <div class="space-y-4 mt-4">
+                    <p class="text-sm font-bold text-blue-900 italic">「AI 不只是軟體，更需硬體支撐。」</p>
+                    <p class="text-xs text-gray-700 leading-relaxed">
+                        高中三年的探索讓我明白，演算法寫得再好，若不懂底層硬體限制，程式就無法高效運行。
+                    </p>
+                    <p class="text-xs text-gray-700 leading-relaxed">
+                        我極度認同貴系「學中做、做中學」理念，前三年連續的實務專題課程，正是我渴望的舞台。
+                    </p>
+                </div>
+            </div>
+            <div class="mt-auto">
+                <h3 class="text-xs font-bold text-gray-500 mb-2 uppercase tracking-widest">核心特質分佈</h3>
+                <div class="chart-container">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1-2 封底：未來規劃 -->
+        <div class="panel">
+            <h2 class="text-xl font-bold text-primary mb-8 text-center">未來藍圖</h2>
+            <div class="space-y-6">
+                <div class="relative pl-6 border-l-2 border-blue-200">
+                    <div class="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-blue-500"></div>
+                    <h4 class="text-sm font-bold text-blue-900">大一～大二：紮根</h4>
+                    <p class="text-[11px] text-gray-600 mt-1">強化數學工具，延續 Micro:bit 除錯經驗，鍛鍊感測控制能力。</p>
+                </div>
+                <div class="relative pl-6 border-l-2 border-blue-200">
+                    <div class="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-blue-500"></div>
+                    <h4 class="text-sm font-bold text-blue-900">大二下～大三：專題</h4>
+                    <p class="text-[11px] text-gray-600 mt-1">鎖定智慧製造，利用 EDA 平台研究軟硬體最佳配比。</p>
+                </div>
+                <div class="relative pl-6 border-l-2 border-blue-200">
+                    <div class="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-blue-500"></div>
+                    <h4 class="text-sm font-bold text-blue-900">大四～未來：接軌</h4>
+                    <p class="text-[11px] text-gray-600 mt-1">爭取實習，申請預研生計畫，成為軟硬體整合專才。</p>
+                </div>
+            </div>
+            <div class="mt-auto text-center py-4 text-gray-300 text-[10px]">
+                永年高中 王奕昀 製作
+            </div>
+        </div>
+
+        <!-- 1-3 封面：個人形象 -->
+        <div class="panel bg-primary text-white text-center">
+            <div class="mt-10">
+                <h1 class="text-3xl font-black tracking-widest mb-2">從底層硬體到</h1>
+                <h1 class="text-3xl font-black tracking-widest mb-4">團隊協作</h1>
+                <p class="text-lg font-light opacity-80 mb-12">做一個務實的 AI 實踐者</p>
+            </div>
+            
+            <!-- 照片佔位 -->
+            <div class="w-48 h-48 rounded-full border-4 border-white mx-auto overflow-hidden bg-white/20 flex items-center justify-center mb-10">
+                <i class="fa-solid fa-user text-6xl text-white/50"></i>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <p class="text-[10px] font-bold text-blue-300 uppercase">申請校系</p>
+                    <p class="text-xl font-bold">淡江大學 人工智慧學系</p>
+                </div>
+                <div class="bg-yellow-400 text-blue-900 py-3 rounded-lg shadow-inner mx-8">
+                    <p class="text-xs font-bold opacity-70">申請人</p>
+                    <p class="text-2xl font-black">王奕昀</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第二張紙：內頁 (左、中、右) -->
+    <div class="brochure-page">
+        <!-- 2-1 科技硬實力 -->
+        <div class="panel">
+            <h2 class="text-xl font-bold text-primary mb-4 flex items-center">
+                <span class="dot bg-accent"></span>直面硬體與誤差
+            </h2>
+            <div class="text-xs text-gray-700 space-y-4 mb-6">
+                <div class="bg-blue-50 p-3 rounded border-l-4 border-primary">
+                    <p class="font-bold mb-1">🔧 程式與硬體的對話</p>
+                    <p>製作「精靈逃亡」與四足機器人時，我體會到硬體環境受光影干擾的真實限制，學會了除錯的耐心。</p>
+                </div>
+                <div class="bg-red-50 p-3 rounded border-l-4 border-accent">
+                    <p class="font-bold mb-1">📊 用數據說話的實測</p>
+                    <p>實測紅光二極體波長 660 奈米，換算出 1.878 電子伏特，對照文獻推導材料為磷化銦鎵。</p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="scatterChart"></canvas>
+            </div>
+            <p class="text-[9px] text-center text-gray-400 mt-2">圖說：實測二極體波長，對照曲線推導材料</p>
+        </div>
+
+        <!-- 2-2 科技思辨力 -->
+        <div class="panel bg-soft">
+            <h2 class="text-xl font-bold text-primary mb-4 flex items-center">
+                <span class="dot bg-primary"></span>不盲從工具
+            </h2>
+            <div class="space-y-4 mb-6">
+                <div class="bg-white p-4 rounded shadow-sm border border-gray-200">
+                    <h4 class="text-xs font-bold text-blue-800 mb-1 italic">發現 AI 工具極限</h4>
+                    <p class="text-[11px] text-gray-600">
+                        嘗試用 AI 繪圖卻發現細節錯誤，我果斷改用正確圖片排版。學會：<span class="font-bold">評估工具極限，務實解決問題</span>。
+                    </p>
+                </div>
+                <div class="bg-white p-4 rounded shadow-sm border border-gray-200">
+                    <h4 class="text-xs font-bold text-blue-800 mb-1 italic">台積電營隊體悟</h4>
+                    <p class="text-[11px] text-gray-600">
+                        了解晶片算力是 AI 核心。憑藉平常累積的半導體知識在競賽快速反應，幫小組奪得<span class="text-accent font-bold">營隊第一名</span>。
+                    </p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="barChart"></canvas>
+            </div>
+            <p class="text-[9px] text-center text-gray-400 mt-2">圖說：營隊關鍵詞學習深度分佈</p>
+        </div>
+
+        <!-- 2-3 團隊軟實力 -->
+        <div class="panel">
+            <h2 class="text-xl font-bold text-primary mb-4 flex items-center">
+                <span class="dot bg-yellow-500"></span>球場到教室的協作
+            </h2>
+            <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded bg-blue-100 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-futbol text-blue-600"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold">足球場上的預判</p>
+                        <p class="text-[11px] text-gray-500 mt-1">瞬息萬變中練習邏輯預判，明白團隊需各司其職而非個人主義。</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded bg-red-100 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-code text-red-600"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold">小老師：化繁為簡</p>
+                        <p class="text-[11px] text-gray-500 mt-1">協助同學 C++ 除錯，學會將程式邏輯比喻成日常生活步驟。</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded bg-green-100 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-check-double text-green-600"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold">心輔股長：行政韌性</p>
+                        <p class="text-[11px] text-gray-500 mt-1">清點發票與捐款中磨練耐性，成為團隊中最穩定的後盾。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-auto bg-gray-50 p-4 rounded-lg text-center border border-dashed border-gray-300">
+                <p class="text-xs text-gray-400">[ 此處請放入一張與同學討論或運動的照片 ]</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js 邏輯 -->
+    <script>
+        // 共用工具：標籤換行邏輯
+        function wrapLabel(label) {
+            if (typeof label !== 'string') return label;
+            if (label.length <= 16) return label;
+            const words = label.split('');
+            const lines = [];
+            for (let i = 0; i < words.length; i += 16) {
+                lines.push(words.slice(i, i + 16).join(''));
+            }
+            return lines;
+        }
+
+        // 共用 Tooltip 配置
+        const tooltipConfig = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            return Array.isArray(label) ? label.join(' ') : label;
+                        }
+                    }
+                }
+            },
+            maintainAspectRatio: false
+        };
+
+        window.onload = function() {
+            // 1. 能力雷達圖 (N項綜整)
+            new Chart(document.getElementById('radarChart'), {
+                type: 'radar',
+                data: {
+                    labels: ['底層硬體認識', '程式邏輯除錯', '團隊溝通表達', '數據分析與探究', '運動家毅力'],
+                    datasets: [{
+                        label: '能力分佈',
+                        data: [90, 85, 80, 95, 88],
+                        backgroundColor: 'rgba(0, 86, 179, 0.2)',
+                        borderColor: '#0056b3',
+                        pointBackgroundColor: '#0056b3'
+                    }]
+                },
+                options: {
+                    ...tooltipConfig,
+                    scales: {
+                        r: { beginAtZero: true, max: 100, ticks: { display: false } }
+                    }
+                }
+            });
+
+            // 2. 二極體實測點圖 (O項反思)
+            new Chart(document.getElementById('scatterChart'), {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        {
+                            label: '理論能隙曲線',
+                            data: [{x: 0, y: 1.4}, {x: 0.2, y: 1.6}, {x: 0.4, y: 1.8}, {x: 0.5, y: 1.878}, {x: 0.6, y: 2.0}, {x: 0.8, y: 2.2}],
+                            showLine: true,
+                            borderColor: '#cbd5e1',
+                            borderDash: [5, 5],
+                            pointRadius: 0
+                        },
+                        {
+                            label: '我的實測值',
+                            data: [{x: 0.5, y: 1.878}],
+                            backgroundColor: '#ff6b6b',
+                            pointRadius: 8
+                        }
+                    ]
+                },
+                options: {
+                    ...tooltipConfig,
+                    scales: {
+                        x: { title: { display: true, text: '材料組成比', font: { size: 10 } } },
+                        y: { title: { display: true, text: '能量 (eV)', font: { size: 10 } } }
+                    }
+                }
+            });
+
+            // 3. 營隊學習分佈 (P項自述)
+            new Chart(document.getElementById('barChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['生成式 AI 算力基礎', '半導體製程觀察', '團隊知識競賽', '企業文化認識'],
+                    datasets: [{
+                        label: '掌握程度',
+                        data: [85, 90, 95, 80],
+                        backgroundColor: '#0056b3',
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    ...tooltipConfig,
+                    indexAxis: 'y',
+                    scales: {
+                        x: { max: 100, ticks: { display: false } }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>
